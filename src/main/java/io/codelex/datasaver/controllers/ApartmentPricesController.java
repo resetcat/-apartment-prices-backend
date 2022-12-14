@@ -25,7 +25,7 @@ public class ApartmentPricesController {
     }
 
     @GetMapping("/get-all")
-    public synchronized List<ApartmentPrices> getTable(){
+    public List<ApartmentPrices> getTable(){
         return apartmentPricesService.getTable();
     }
 
