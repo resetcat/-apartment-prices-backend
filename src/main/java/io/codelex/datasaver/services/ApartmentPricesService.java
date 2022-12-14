@@ -1,7 +1,7 @@
 package io.codelex.datasaver.services;
 
 import io.codelex.datasaver.models.ApartmentPrices;
-import io.codelex.datasaver.repositories.DataRepository;
+import io.codelex.datasaver.repositories.ApartmentPricesRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -9,10 +9,10 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
-public class DataService {
-    private final DataRepository dataRepository;
+public class ApartmentPricesService {
+    private final ApartmentPricesRepository dataRepository;
 
-    public DataService(DataRepository dataRepository) {
+    public ApartmentPricesService(ApartmentPricesRepository dataRepository) {
         this.dataRepository = dataRepository;
     }
 
@@ -22,12 +22,12 @@ public class DataService {
     }
 
     public void validateRow(ApartmentPrices apartmentPrices) {
-        if(CheckIfExists(apartmentPrices)){
+        if(checkIfExists(apartmentPrices)){
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
     }
 
-    private boolean CheckIfExists(ApartmentPrices apartmentPrices) {
+    private boolean checkIfExists(ApartmentPrices apartmentPrices) {
         return dataRepository.existsById(apartmentPrices.getId());
     }
 
