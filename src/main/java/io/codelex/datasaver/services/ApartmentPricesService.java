@@ -21,7 +21,7 @@ public class ApartmentPricesService {
         return dataRepository.save(apartmentPrices);
     }
 
-    public void validateRow(ApartmentPrices apartmentPrices) {
+    private void validateRow(ApartmentPrices apartmentPrices) {
         if(checkIfExists(apartmentPrices)){
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
